@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name='de.esoco.GwtFramework' />
+	<inherits name='de.esoco.GewtChart' />
+	<inherits name='de.esoco.GewtTimetable' />
+	
+	<source path='gwt/client'/>
+ 	<source path='gwt/shared'/>
+</module>

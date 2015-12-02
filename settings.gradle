@@ -1,0 +1,12 @@
+apply from: '../sdack/settings.gradle'
+
+rootProject.children.each { project -> 
+    project.projectDir = new File(rootDir, '../sdack/' + project.name)
+}
+
+include ':sdack'
+project(':sdack').projectDir = new File('../sdack')
+include ':gewt-chart'
+include ':gewt-timetable'
+include ':esoco-oauth'
+
