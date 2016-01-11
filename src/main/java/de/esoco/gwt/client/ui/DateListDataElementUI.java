@@ -1,6 +1,6 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// This file is a part of the 'esoco-gwt-deps' project.
-// Copyright 2015 Elmar Sonnenschein, esoco GmbH, Flensburg, Germany
+// This file is a part of the 'sdack-extensions' project.
+// Copyright 2016 Elmar Sonnenschein, esoco GmbH, Flensburg, Germany
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -97,75 +97,11 @@ public class DateListDataElementUI extends DataElementUI<DateListDataElement>
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<EventType> getInteractionEventTypes(
-		Component			 aComponent,
-		InteractiveInputMode eInputMode)
+	protected DataElementInteractionHandler<DateListDataElement> createInteractionHandler(
+		DataElementPanelManager rPanelManager,
+		DateListDataElement		rDataElement)
 	{
-		return EnumSet.of(EventType.ACTION,
-						  EventType.SELECTION,
-						  EventType.ELEMENT_CREATED,
-						  EventType.ELEMENT_UPDATED,
-						  EventType.ELEMENT_DELETED);
-	}
-
-	/***************************************
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void handleInteractiveInput(
-		EWTEvent			 rEvent,
-		InteractiveInputMode eInputMode)
-	{
-		Object		    rTarget			 = rEvent.getElement();
-		HasProperties   rEditedElement   = null;
-		InteractionType eInteractionType = null;
-
-		if (rTarget instanceof HasProperties)
-		{
-			rEditedElement = (HasProperties) rTarget;
-		}
-
-		switch (rEvent.getType())
-		{
-			case ACTION:
-				if (rTarget instanceof Date)
-				{
-					StringProperties aDateElement = new StringProperties();
-
-					aDateElement.setProperty(StandardProperties.START_DATE,
-											 (Date) rTarget);
-					eInteractionType = InteractionType.DATE_OPEN;
-					rEditedElement   = aDateElement;
-				}
-				else
-				{
-					eInteractionType = InteractionType.OPEN;
-				}
-
-				break;
-
-			case SELECTION:
-				eInteractionType = InteractionType.SELECT;
-				break;
-
-			case ELEMENT_CREATED:
-				eInteractionType = InteractionType.CREATE;
-				break;
-
-			case ELEMENT_UPDATED:
-				eInteractionType = InteractionType.UPDATE;
-				break;
-
-			case ELEMENT_DELETED:
-				eInteractionType = InteractionType.DELETE;
-				break;
-
-			default:
-		}
-
-		getDataElement().setInteraction(eInteractionType, rEditedElement);
-
-		super.handleInteractiveInput(rEvent, eInputMode);
+		return new DateListInteractionHandler(rPanelManager, rDataElement);
 	}
 
 	/***************************************
@@ -262,5 +198,108 @@ public class DateListDataElementUI extends DataElementUI<DateListDataElement>
 
 		rTimetable.clear();
 		rTimetable.addEvents(rCalendarEvents);
+	}
+
+	//~ Inner Classes ----------------------------------------------------------
+
+	/********************************************************************
+	 * A date-specific interaction handler subclass.
+	 *
+	 * @author eso
+	 */
+	static class DateListInteractionHandler
+		extends DataElementInteractionHandler<DateListDataElement>
+	{
+		//~ Constructors -------------------------------------------------------
+
+		/***************************************
+		 * {@inheritDoc}
+		 */
+		public DateListInteractionHandler(
+			DataElementPanelManager rPanelManager,
+			DateListDataElement		rDataElement)
+		{
+			super(rPanelManager, rDataElement);
+		}
+
+		//~ Methods ------------------------------------------------------------
+
+		/***************************************
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void handleEvent(EWTEvent rEvent)
+		{
+			Object		    rTarget			 = rEvent.getElement();
+			HasProperties   rEditedElement   = null;
+			InteractionType eInteractionType = null;
+
+			if (rTarget instanceof HasProperties)
+			{
+				rEditedElement = (HasProperties) rTarget;
+			}
+
+			switch (rEvent.getType())
+			{
+				case ACTION:
+
+					if (rTarget instanceof Date)
+					{
+						StringProperties aDateElement = new StringProperties();
+
+						aDateElement.setProperty(StandardProperties.START_DATE,
+												 (Date) rTarget);
+						eInteractionType = InteractionType.DATE_OPEN;
+						rEditedElement   = aDateElement;
+					}
+					else
+					{
+						eInteractionType = InteractionType.OPEN;
+					}
+
+					break;
+
+				case SELECTION:
+					eInteractionType = InteractionType.SELECT;
+
+					break;
+
+				case ELEMENT_CREATED:
+					eInteractionType = InteractionType.CREATE;
+
+					break;
+
+				case ELEMENT_UPDATED:
+					eInteractionType = InteractionType.UPDATE;
+
+					break;
+
+				case ELEMENT_DELETED:
+					eInteractionType = InteractionType.DELETE;
+
+					break;
+
+				default:
+			}
+
+			getDataElement().setInteraction(eInteractionType, rEditedElement);
+
+			super.handleEvent(rEvent);
+		}
+
+		/***************************************
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Set<EventType> getInteractionEventTypes(
+			Component			 aComponent,
+			InteractiveInputMode eInputMode)
+		{
+			return EnumSet.of(EventType.ACTION,
+							  EventType.SELECTION,
+							  EventType.ELEMENT_CREATED,
+							  EventType.ELEMENT_UPDATED,
+							  EventType.ELEMENT_DELETED);
+		}
 	}
 }
