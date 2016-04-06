@@ -1,3 +1,4 @@
+rootProject.name = "sdack-extensions"
 apply from: '../sdack/settings.gradle'
 
 rootProject.children.each { project -> 
