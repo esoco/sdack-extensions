@@ -7,3 +7,6 @@
 [submodule "gewt-timetable"]
 	path = gewt-timetable
 	url = https://github.com/esoco/gewt-timetable.git
+[submodule "gewt-material"]
+	path = gewt-material
+	url = https://github.com/esoco/gewt-material.git
