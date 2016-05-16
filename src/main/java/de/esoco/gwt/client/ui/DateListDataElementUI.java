@@ -31,9 +31,9 @@ import de.esoco.ewt.event.EventType;
 import de.esoco.ewt.style.StyleData;
 
 import de.esoco.lib.property.HasProperties;
+import de.esoco.lib.property.InteractiveInputMode;
 import de.esoco.lib.property.StandardProperties;
 import de.esoco.lib.property.StringProperties;
-import de.esoco.lib.property.UserInterfaceProperties.InteractiveInputMode;
 
 import java.util.Date;
 import java.util.EnumSet;
