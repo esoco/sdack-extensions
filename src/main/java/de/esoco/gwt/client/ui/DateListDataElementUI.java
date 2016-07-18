@@ -31,7 +31,7 @@ import de.esoco.ewt.event.EventType;
 import de.esoco.ewt.style.StyleData;
 
 import de.esoco.lib.property.HasProperties;
-import de.esoco.lib.property.InteractiveInputMode;
+import de.esoco.lib.property.InteractionEventType;
 import de.esoco.lib.property.StandardProperties;
 import de.esoco.lib.property.StringProperties;
 
@@ -292,8 +292,8 @@ public class DateListDataElementUI extends DataElementUI<DateListDataElement>
 		 */
 		@Override
 		protected Set<EventType> getInteractionEventTypes(
-			Component			 aComponent,
-			InteractiveInputMode eInputMode)
+			Component				  aComponent,
+			Set<InteractionEventType> rInteractionEventTypes)
 		{
 			return EnumSet.of(EventType.ACTION,
 							  EventType.SELECTION,
