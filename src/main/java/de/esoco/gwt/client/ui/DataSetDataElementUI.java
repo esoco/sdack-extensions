@@ -72,6 +72,21 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 	 * {@inheritDoc}
 	 */
 	@Override
+	protected Component createInputUI(ContainerBuilder<?> rBuilder,
+									  StyleData			  rDisplayStyle,
+									  DataSetDataElement  rDataElement)
+	{
+		Chart aChart = ChartBuilder.addChart(rBuilder, rDisplayStyle, null);
+
+		setChartParameters(aChart, rDataElement);
+
+		return aChart;
+	}
+
+	/***************************************
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected void transferDataElementValueToComponent(
 		DataSetDataElement rDataElement,
 		Component		   rComponent)
