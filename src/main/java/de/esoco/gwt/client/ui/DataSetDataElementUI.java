@@ -25,9 +25,11 @@ import de.esoco.ewt.component.Chart;
 import de.esoco.ewt.component.Chart.ChartLegendPosition;
 import de.esoco.ewt.component.Chart.ChartType;
 import de.esoco.ewt.component.Component;
+import de.esoco.ewt.graphics.Color;
 import de.esoco.ewt.style.StyleData;
 
 import de.esoco.lib.model.DataSet;
+import de.esoco.lib.property.StyleProperties;
 
 import static de.esoco.data.element.DataSetDataElement.CHART_3D;
 import static de.esoco.data.element.DataSetDataElement.CHART_BACKGROUND;
@@ -95,6 +97,17 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 	}
 
 	/***************************************
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void transferInputToDataElement(
+		Component		   rComponent,
+		DataSetDataElement rDataElement)
+	{
+		// can be ignored because the chart data is not modified by the client
+	}
+
+	/***************************************
 	 * Sets the parameters of the chart component from the data element.
 	 *
 	 * @param aChart       The chart component
@@ -106,7 +119,18 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 	{
 		DataSet<?> rDataSet = rDataElement.getValue();
 
-		String sBackground = rDataElement.getProperty(CHART_BACKGROUND, null);
+		String  sBackgroundColor;
+		Integer rBackgroundColor =
+			rDataElement.getProperty(StyleProperties.BACKGROUND_COLOR, null);
+
+		if (rBackgroundColor != null)
+		{
+			sBackgroundColor = Color.toHtml(rBackgroundColor.intValue());
+		}
+		else
+		{
+			sBackgroundColor = rDataElement.getProperty(CHART_BACKGROUND, null);
+		}
 
 		ChartType eChartType =
 			ChartType.valueOf(rDataElement.getProperty(CHART_TYPE,
@@ -121,7 +145,7 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 			ChartLegendPosition.valueOf(eLegendPosition.name());
 
 		aChart.setChartType(eChartType);
-		aChart.setBackgroundColor(sBackground);
+		aChart.setBackgroundColor(sBackgroundColor);
 		aChart.setLegendPosition(eChartLegendPosition);
 		aChart.set3D(rDataElement.hasFlag(CHART_3D));
 		aChart.setData(rDataSet);
