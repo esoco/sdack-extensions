@@ -1,6 +1,6 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// This file is a part of the 'esoco-gwt-deps' project.
-// Copyright 2015 Elmar Sonnenschein, esoco GmbH, Flensburg, Germany
+// This file is a part of the 'sdack-extensions' project.
+// Copyright 2016 Elmar Sonnenschein, esoco GmbH, Flensburg, Germany
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ public final class AuthenticatedUploadServlet extends HttpServlet
 		HttpServletResponse rResponse) throws Exception
 	{
 		String	    sUploadId    = rRequest.getParameter("id");
-		SessionData rSessionData = getSessionData(rRequest);
+		SessionData rSessionData = getSessionData(rRequest, true);
 
 		if (rSessionData != null && sUploadId != null && sUploadId.length() > 0)
 		{
