@@ -10,16 +10,8 @@ if ((new File(sdackSettings)).exists()) {
 
 rootProject.name = "sdack-extensions"
 
-def baseProjects = [':sdack']
-
-baseProjects.each { projectName ->
-	def projectDir = new File("../${projectName.substring(1)}")
-
-	if (projectDir.exists()) {
-		include projectName
-		project(projectName).projectDir = projectDir
-	}
-}
+include ':sdack'
+project(':sdack').projectDir = new File("../sdack}")
 
 include ':gewt-chart'
 include ':gewt-timetable'
