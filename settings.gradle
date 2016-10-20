@@ -1,12 +1,26 @@
-rootProject.name = "sdack-extensions"
-apply from: '../sdack/settings.gradle'
+def sdackSettings = '../sdack/settings.gradle'
 
-rootProject.children.each { project -> 
-    project.projectDir = new File(rootDir, '../sdack/' + project.name)
+if ((new File(sdackSettings)).exists()) {
+	apply from: sdackSettings
+
+	rootProject.children.each { project -> 
+	    project.projectDir = new File(rootDir, '../sdack/' + project.name)
+	}
+}	
+
+rootProject.name = "sdack-extensions"
+
+def baseProjects = [':sdack']
+
+baseProjects.each { projectName ->
+	def projectDir = new File("../${projectName.substring(1)}")
+
+	if (projectDir.exists()) {
+		include projectName
+		project(projectName).projectDir = projectDir
+	}
 }
 
-include ':sdack'
-project(':sdack').projectDir = new File('../sdack')
 include ':gewt-chart'
 include ':gewt-timetable'
 include ':esoco-oauth'
