@@ -31,11 +31,26 @@ dependencies {
 	else {
 		compile 'de.esoco:sdack:1.+'
 	}
+ 	if (project(':gewt-chart').getProjectDir().exists()) {
+		compile project(':gewt-chart')
+	}
+	else {
+		compile 'de.esoco:gewt-chart:1.+'
+	}
+ 	if (project(':gewt-timetable').getProjectDir().exists()) {
+		compile project(':gewt-timetable')
+	}
+	else {
+		compile 'de.esoco:gewt-timetable:1.+'
+	}
+ 	if (project(':esoco-oauth').getProjectDir().exists()) {
+		compile project(':esoco-oauth')
+	}
+	else {
+		compile 'de.esoco:esoco-oauth:1.+'
+	}
 
-	compile project(':gewt-chart')
-	compile project(':gewt-timetable')
-	compile project(':esoco-oauth')
-
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
 	compile 'commons-fileupload:commons-fileupload:1.3.+'
 
     testCompile 'junit:junit:4.+'
