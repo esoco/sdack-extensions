@@ -11,7 +11,7 @@ if ((new File(sdackSettings)).exists()) {
 rootProject.name = "sdack-extensions"
 
 include ':sdack'
-project(':sdack').projectDir = new File("../sdack}")
+project(':sdack').projectDir = new File("../sdack")
 
 include ':gewt-chart'
 include ':gewt-timetable'
