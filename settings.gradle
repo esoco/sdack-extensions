@@ -1,11 +1,8 @@
-def sdackSettings = '../sdack/settings.gradle'
 
-if ((new File(sdackSettings)).exists()) {
-	apply from: sdackSettings
+apply from: '../sdack/settings.gradle'
 
-	rootProject.children.each { project -> 
-	    project.projectDir = new File(rootDir, '../sdack/' + project.name)
-	}
+rootProject.children.each { project -> 
+    project.projectDir = new File(rootDir, '../sdack/' + project.name)
 }	
 
 rootProject.name = "sdack-extensions"
