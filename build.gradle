@@ -29,25 +29,25 @@ dependencies {
 		compile project(':sdack')
 	}
 	else {
-		compile 'de.esoco:sdack:1.+'
+		compile 'de.esoco:sdack:1.0.+'
 	}
  	if (project(':gewt-chart').getProjectDir().exists()) {
 		compile project(':gewt-chart')
 	}
 	else {
-		compile 'de.esoco:gewt-chart:1.+'
+		compile 'de.esoco:gewt-chart:1.0.+'
 	}
  	if (project(':gewt-timetable').getProjectDir().exists()) {
 		compile project(':gewt-timetable')
 	}
 	else {
-		compile 'de.esoco:gewt-timetable:1.+'
+		compile 'de.esoco:gewt-timetable:1.0.+'
 	}
  	if (project(':esoco-oauth').getProjectDir().exists()) {
 		compile project(':esoco-oauth')
 	}
 	else {
-		compile 'de.esoco:esoco-oauth:1.+'
+		compile 'de.esoco:esoco-oauth:1.0.+'
 	}
 
 	compile 'javax.servlet:javax.servlet-api:3.0.1'
