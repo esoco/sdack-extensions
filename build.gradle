@@ -15,10 +15,9 @@ apply plugin: 'java'
 apply plugin: 'osgi'
 
 project.group   = 'de.esoco'
-project.version = '1.0.1'
+project.version = '1.1.0'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
 
 repositories {
     jcenter()
@@ -29,7 +28,7 @@ dependencies {
 		compile project(':sdack')
 	}
 	else {
-		compile 'de.esoco:sdack:1.0.+'
+		compile 'de.esoco:sdack:1.1.+'
 	}
  	if (project(':gewt-chart').getProjectDir().exists()) {
 		compile project(':gewt-chart')
