@@ -1,12 +1,5 @@
 buildscript {
     repositories { jcenter() }
-    dependencies { classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7' }
-}
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven'
-
-buildscript {
-    repositories { jcenter() }
     dependencies { classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6' }
 }
 apply plugin: 'gwt-base'
@@ -77,34 +70,15 @@ artifacts {
     archives javadocJar
 }
 
-bintray {
-	user = project.hasProperty('bintrayUser') ? 
-				project.property('bintrayUser') : 
-				System.getenv('BINTRAY_USER')
-	key = project.hasProperty('bintrayApiKey') ? 
-				project.property('bintrayApiKey') : 
-				System.getenv('BINTRAY_API_KEY')
-    configurations = ['archives']
-    publish = true
-
-	pkg {
-		repo = 'sdack'
-		name = project.name
-		version {
-			name = project.version
-	    }
-    }
-}
-
 task fullJar(type: Jar) {
     baseName = 'sdack-extensions-all'
 
     manifest {
-        attributes 'Implementation-Title': 'SDACK - Simple Development Application Component Kit',  
+        attributes 'Implementation-Title': 'SDACK - Simple Development Application Component Kit',
 	        	   'Implementation-Version': project.version,
 	               'Built-Date': new Date(),
                    'Built-JDK': System.getProperty('java.version')
-                   
+
     }
     // exclude files from GWT jar
  	exclude('com/**')
@@ -113,9 +87,9 @@ task fullJar(type: Jar) {
  	exclude('META-INF/maven/**')
  	// exclude hibernate which is only used for testing
  	exclude('org/hibernate/**')
-    
-	from { configurations.compile.collect 
-		{ it.isDirectory() ? it : zipTree(it) } 
+
+	from { configurations.compile.collect
+		{ it.isDirectory() ? it : zipTree(it) }
 	}
     with jar
 }
