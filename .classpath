@@ -10,7 +10,6 @@
 	<classpathentry exported="true" kind="src" path="/gewt-chart"/>
 	<classpathentry exported="true" kind="src" path="/gewt-timetable"/>
 	<classpathentry exported="true" kind="src" path="/esoco-oauth"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
