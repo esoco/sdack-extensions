@@ -1,9 +1,9 @@
 [submodule "esoco-oauth"]
 	path = esoco-oauth
-	url = https://github.com/esoco/esoco-oauth.git
+	url = ../esoco-oauth.git
 [submodule "gewt-chart"]
 	path = gewt-chart
-	url = https://github.com/esoco/gewt-chart.git
+	url = ../gewt-chart.git
 [submodule "gewt-timetable"]
 	path = gewt-timetable
-	url = https://github.com/esoco/gewt-timetable.git
+	url = ../gewt-timetable.git
