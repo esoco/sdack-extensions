@@ -25,7 +25,6 @@ import de.esoco.ewt.component.Chart;
 import de.esoco.ewt.component.Chart.ChartLegendPosition;
 import de.esoco.ewt.component.Chart.ChartType;
 import de.esoco.ewt.component.Component;
-import de.esoco.ewt.graphics.Color;
 import de.esoco.ewt.style.StyleData;
 
 import de.esoco.lib.model.DataSet;
@@ -110,15 +109,10 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 	{
 		DataSet<?> rDataSet = rDataElement.getValue();
 
-		String  sBackgroundColor;
-		Integer rBackgroundColor =
+		String sBackgroundColor =
 			rDataElement.getProperty(StyleProperties.BACKGROUND_COLOR, null);
 
-		if (rBackgroundColor != null)
-		{
-			sBackgroundColor = Color.toHtml(rBackgroundColor.intValue());
-		}
-		else
+		if (sBackgroundColor == null)
 		{
 			sBackgroundColor = rDataElement.getProperty(CHART_BACKGROUND, null);
 		}
