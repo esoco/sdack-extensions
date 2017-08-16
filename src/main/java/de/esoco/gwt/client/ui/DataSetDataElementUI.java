@@ -28,6 +28,7 @@ import de.esoco.ewt.component.Component;
 import de.esoco.ewt.style.StyleData;
 
 import de.esoco.lib.model.DataSet;
+import de.esoco.lib.property.Color;
 import de.esoco.lib.property.StyleProperties;
 
 import static de.esoco.data.element.DataSetDataElement.CHART_3D;
@@ -109,12 +110,12 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 	{
 		DataSet<?> rDataSet = rDataElement.getValue();
 
-		String sBackgroundColor =
+		Color rBackgroundColor =
 			rDataElement.getProperty(StyleProperties.BACKGROUND_COLOR, null);
 
-		if (sBackgroundColor == null)
+		if (rBackgroundColor == null)
 		{
-			sBackgroundColor = rDataElement.getProperty(CHART_BACKGROUND, null);
+			rBackgroundColor = rDataElement.getProperty(CHART_BACKGROUND, null);
 		}
 
 		ChartType eChartType =
@@ -130,7 +131,7 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 			ChartLegendPosition.valueOf(eLegendPosition.name());
 
 		aChart.setChartType(eChartType);
-		aChart.setBackgroundColor(sBackgroundColor);
+		aChart.setBackgroundColor(rBackgroundColor);
 		aChart.setLegendPosition(eChartLegendPosition);
 		aChart.set3D(rDataElement.hasFlag(CHART_3D));
 		aChart.setData(rDataSet);
