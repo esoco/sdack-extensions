@@ -54,9 +54,17 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 										StyleData			rDisplayStyle,
 										DataSetDataElement  rDataElement)
 	{
-		Chart aChart = ChartBuilder.addChart(rBuilder, rDisplayStyle, null);
+		ChartType eChartType =
+			ChartType.valueOf(rDataElement.getProperty(CHART_TYPE,
+													   DataSetDataElement
+													   .ChartType.PIE).name());
+		Component aChart     =
+			ChartBuilder.addChart(rBuilder, rDisplayStyle, eChartType);
 
-		setChartParameters(aChart, rDataElement);
+		if (aChart.getClass() == Chart.class)
+		{
+			setChartParameters((Chart) aChart, rDataElement);
+		}
 
 		return aChart;
 	}
@@ -69,11 +77,7 @@ public class DataSetDataElementUI extends DataElementUI<DataSetDataElement>
 									  StyleData			  rDisplayStyle,
 									  DataSetDataElement  rDataElement)
 	{
-		Chart aChart = ChartBuilder.addChart(rBuilder, rDisplayStyle, null);
-
-		setChartParameters(aChart, rDataElement);
-
-		return aChart;
+		return createDisplayUI(rBuilder, rDisplayStyle, rDataElement);
 	}
 
 	/***************************************
