@@ -65,6 +65,16 @@ artifacts {
     archives javadocJar
 }
 
+tasks.withType(Javadoc) {
+    failOnError = false
+    options.addBooleanOption('quiet', true)
+    
+    if (JavaVersion.current().isJava8Compatible()) {
+        options.addBooleanOption('Xdoclint:none', true) 
+    }
+}
+
+
 task fullJar(type: Jar) {
     baseName = 'sdack-extensions-all'
 
